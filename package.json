@@ -12,7 +12,10 @@
   "dependencies": {
     "expo": "~50.0.8",
     "expo-status-bar": "~1.11.1",
+<<<<<<< HEAD
     "lottie-react-native": "^6.7.0",
+=======
+>>>>>>> 02a05ec1127741223c1c9b3bbc0b5a25d1a0b95a
     "react": "18.2.0",
     "react-native": "0.73.4"
   },
