@@ -1,31 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-<<<<<<< HEAD
 import Splash from './src/splash'
-import { useState } from 'react';
-import HomePage from './src/home-page';
+import { useState, useEffect } from 'react';
+import Navigations from '@/components/navigatin/navigation';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { Provider } from 'react-redux';
+import { store } from '@/state-management/store';
+
+
+const LoadFont = async () => {
+  await Font.loadAsync({
+    iranSans: require('./assets/fonts/IRANSansXFaNum-Regular.ttf'),
+  });
+};
+
 
 export default function App() {
   const [isLoading, setIsloading] = useState<boolean>(true);
+  const [loadedData, setLoadedData] = useState(false);
 
-  return isLoading ? <Splash /> : <HomePage/>
-=======
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>phoenix app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
->>>>>>> 02a05ec1127741223c1c9b3bbc0b5a25d1a0b95a
+  useEffect(() => {
+    const fetchData = async ()=> {
+      await LoadFont()
+      .then(() => {
+        setLoadedData(true);
+        SplashScreen.hideAsync();
+      })
+      .catch(console.warn);
+    }
+    fetchData();
+  }, []);
+  
+  if (!loadedData) {
+    return null;
+  }
+
+  return isLoading 
+  ? <Splash setIsLoading={setIsloading}/> 
+  : <Provider store={store}>
+      <Navigations/>
+  </Provider>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
