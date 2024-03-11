@@ -1,6 +1,8 @@
 import React, {forwardRef, useImperativeHandle, useRef, useState} from 'react';
 import {TextInput, StyleSheet, TextInputProps, View, TouchableOpacity} from 'react-native';
 import  theme  from '../config/theme';
+import { useSelector } from "react-redux";
+
 
 
 export type InputHandle={
@@ -38,6 +40,8 @@ const TextField = forwardRef<InputHandle, InputProps>(
 }, ref )=>{
     const [value, setValue] = useState('');
     const textInputRef = useRef<TextInput>(null);
+    const {themeMode} = useSelector((state:any)=>state.globalState);
+    const mode = themeMode === "light" ? theme.light : theme.dark;
 
     const styles = StyleSheet.create({
     
@@ -69,12 +73,12 @@ const TextField = forwardRef<InputHandle, InputProps>(
         
     },
     rightIcon:{
-    backgroundColor:bgColorRightIcon ? bgColorRightIcon : "blue",
+    backgroundColor:bgColorRightIcon ? bgColorRightIcon : mode.component,
     borderTopRightRadius:15,
     borderBottomRightRadius:15, 
     },
     leftIcon:{
-    backgroundColor: bgColorLeftIcon ? bgColorLeftIcon : "blue",
+    backgroundColor: bgColorLeftIcon ? bgColorLeftIcon : mode.component,
     borderTopLeftRadius:15,
     borderBottomLeftRadius:15, 
     }

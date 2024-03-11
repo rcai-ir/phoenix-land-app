@@ -1,3 +1,4 @@
+import React from 'react';
 import Splash from './src/splash'
 import { useState, useEffect } from 'react';
 import Navigations from '@/components/navigatin/navigation';

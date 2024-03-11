@@ -1,5 +1,5 @@
 import TextField from "@/components/text-input";
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, Alert } from "react-native";
 import Button from "@/components/button";
@@ -15,17 +15,24 @@ import {
 } from '@/state-management/actions/global-state-actions';
 import { userLogin } from "@/state-management/actions/auth-actions";
 import { userGetById } from "@/state-management/actions/user-actions";
-// import LeftIcon from "../../assets/SVGs/usrname.svg"; 
+import usernameIcon from "../../assets/SVGs/username.svg";
+import passwordIcon from "../../assets/SVGs/Password.svg"
+import unseenIcon from "../../assets/SVGs/unSeen.svg";
+import viewIcon from "../../assets/SVGs/view.svg";
+
+
+
 
 
 
 function LoginScreen(props:any) {
-    const { userLogin, userGetById } = props;
+    const { userLogin, userGetById, navigation } = props;
     const usernameRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
     const {themeMode, rememberMe, persistLoginScreen} = useSelector((state:any)=>state.globalState);
     const dispatch = useDispatch();
     const mode = themeMode === "light" ? theme.light : theme.dark;
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(()=>{
         if(rememberMe && persistLoginScreen.username){
@@ -66,10 +73,10 @@ function LoginScreen(props:any) {
                         const data:any ={uid, name, partner_id, password};
                         await isLogin(true); 
                         await setUserData(data);
-                        Alert.alert("this user is ok")
+                        navigation.push("HomeScreen")
                     }
 
-                }catch(error){
+                }catch(error:any){
                     Alert.alert(error.message)
                 }
             }
@@ -85,15 +92,20 @@ function LoginScreen(props:any) {
             <TextField
             ref={usernameRef}
             placeholder="نام کاربری را وارد نمایید"
-            // placeholderTextColor={""}
+            placeholderTextColor={mode.grayColor}
             onSubmit={()=>passwordRef.current?.onFocus()}
-            // LeftIcon={LeftIcon}
+            LeftIcon={usernameIcon}
+            bgColorLeftIcon={mode.backgroundLight}
             />
             <TextField
             ref={passwordRef}
             placeholder="رمز عبور را وارد نمایید"
-            // placeholderTextColor={""}
-            // LeftIcon={LeftIcon}
+            secureTextEntry = {showPassword ? false : true}
+            placeholderTextColor={mode.grayColor}
+            LeftIcon={passwordIcon}
+            RightIcon={!showPassword ? unseenIcon : viewIcon}
+            bgColorLeftIcon={mode.backgroundLight}
+            rightIconOnSubmit={()=>setShowPassword(!showPassword)}
             />
             <Checkbox.Item
             label="من را به خاطر بسپار"

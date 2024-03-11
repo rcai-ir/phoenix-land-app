@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from "react";
 import LottieView from "lottie-react-native";
 
 interface SplashProps {
-    setIsLoading?: Dispatch<SetStateAction<boolean>>;
+    setIsLoading?: any;
 }
 
 
@@ -15,7 +15,7 @@ export default function Splash (props:SplashProps) {
         autoPlay
         loop={false}
         resizeMode="contain"
-        onAnimationFinish={()=>setTimeout(()=> setIsLoading(false), 1000)}
+        onAnimationFinish={()=>setIsLoading && setIsLoading(false)}
         />
     )
 }
