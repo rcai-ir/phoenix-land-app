@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "https://viraweb123.ir",
+    baseURL: "https://healthcareplus.oxydoo.com",
     headers:{
         "Content-Type": "application/json",
     }
