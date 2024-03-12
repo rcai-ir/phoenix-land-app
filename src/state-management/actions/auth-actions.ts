@@ -1,6 +1,7 @@
 import axiosInstance from "../base-url";
 import { Dispatch } from "redux";
 import { Authenticated } from "types";
+import { AnyAction } from "redux";
 
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -32,10 +33,9 @@ export const loginFailure = (error: string) => {
 
 
 export const userLogin = (credentials:Authenticated) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch<AnyAction>):Promise<{data: any; status: number}> => {
         dispatch(loginRequest());
         try {
-            
             const response = await axiosInstance.post("/jsonrpc",{
                 jsonrpc: "2.0",
                 method: "call",
@@ -50,7 +50,6 @@ export const userLogin = (credentials:Authenticated) => {
                     ]
                 },
             });
-            
             const responseData = response.data;
             const responseStatus = response.status; 
             dispatch(loginSuccess(responseData));

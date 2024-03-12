@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import axiosInstance from "../base-url";
 import { Authenticated } from "types";
+import { AnyAction } from "redux";
 
 export const USER_DATA_REQUEST = "USER_DATA_REQUEST";
 export const USER_DATA_SUCCESS = "USER_DATA_SUCCESS";
@@ -28,7 +29,7 @@ export const dataFailure = (error:string) => {
 
 
 export const userGetById = (credentials:Authenticated) => {
-return async (dispatch:Dispatch) => {
+return async (dispatch:Dispatch<AnyAction>):Promise<{data:any, status:number}> => {
     try {
         dispatch(dataRequest());
         const response = await axiosInstance.post("/jsonrpc",{

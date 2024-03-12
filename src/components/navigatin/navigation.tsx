@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "@/config/theme";
 import { useSelector } from "react-redux";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import BurgerMenu from "../../../assets/SVGs/burgerMenu.svg"
 
 const Stack = createNativeStackNavigator();
 
@@ -11,13 +13,28 @@ const Navigations = () => {
     const {themeMode, isLogined} = useSelector((state:any)=>state.globalState);
     const mode = themeMode === "light" ? theme.light : theme.dark;
 
+    const handleChangeBottonSheet = async ()=> {
+        console.log("ok")
+        // const isActive = await ref?.current?.isActive();
+        // if (isActive) {
+        //     ref?.current?.scrollTo(0);
+        // } else {
+        //     ref?.current?.scrollTo(-350);}
+    };
+
+    const styles = StyleSheet.create({
+        button:{
+
+        }
+    })
+
     return (
         <NavigationContainer>
             <Stack.Navigator
             screenOptions={{
                 statusBarColor:"gray"
             }}
-            initialRouteName={isLogined ? "HomeScreen" : "LoginScreen"}
+            initialRouteName={isLogined ? "ProfileScreen" : "LoginScreen"}
             >
                 {Pages.map((page, index)=>{
                     if (page.rule !== "restricted" && isLogined){
@@ -28,12 +45,12 @@ const Navigations = () => {
                             component={page.component}
                             options={{
                                 headerStyle: {
-                                    backgroundColor: "#ffff",
+                                    backgroundColor: mode.header,
                                 },
                                 contentStyle:{
-                                    backgroundColor:"blue",
+                                    backgroundColor:mode.background,
                                 },
-                                headerTintColor: "red",
+                                headerTintColor: mode.blueColor,
                                 headerTitleAlign: 'center',
                                 headerTitleStyle: {
                                     fontFamily: mode.fontFamily,
@@ -44,6 +61,14 @@ const Navigations = () => {
                                 headerTitle: page.persianName,
                                 headerTransparent: false,
                                 autoHideHomeIndicator: false,
+                                headerBackVisible: page.name !== "HomeScreen",
+                                    headerLeft:
+                                        page.name === "HomeScreen" ? () => (
+                                        <TouchableOpacity style={styles.button} onPress={handleChangeBottonSheet}>
+                                            <BurgerMenu />
+                                        </TouchableOpacity>
+                                        ) 
+                                        : undefined,
                             }}
                             />
                         )

@@ -3,8 +3,6 @@ import {TextInput, StyleSheet, TextInputProps, View, TouchableOpacity} from 'rea
 import  theme  from '../config/theme';
 import { useSelector } from "react-redux";
 
-
-
 export type InputHandle={
 getValue: ()=> string;
 onFocus: ()=> void;
@@ -51,7 +49,7 @@ const TextField = forwardRef<InputHandle, InputProps>(
     alignItems:'center',
         height:40,
         width: "100%",
-        backgroundColor:"white",
+        backgroundColor:mode.component,
         borderWidth:1,
         marginBottom:20,
         borderRadius:15,
@@ -61,9 +59,9 @@ const TextField = forwardRef<InputHandle, InputProps>(
     flex:1,
         paddingRight:10,
         paddingLeft:10,
-        color: "green",
-        direction:'rtl',
+        color: mode.color,
         fontSize:14,
+        textAlign:"left"
     },
     Icons: {
         paddingHorizontal:15,
@@ -97,14 +95,17 @@ return(
         RightIcon 
         ? rightIconOnSubmit
         ? <TouchableOpacity onPress={rightIconOnSubmit}>
-        <View 
-        style={[styles.Icons, styles.rightIcon]}>
-            <RightIcon/>
-        </View>
+            {
+            value.length > 0 
+            ?   <View style={[styles.Icons, styles.rightIcon]}>
+                    <RightIcon/>
+                </View>
+            : null
+            }
         </TouchableOpacity>
         : <View 
         style={[styles.Icons, styles.rightIcon]}>
-            <RightIcon />
+            {value.length > 0 ? <RightIcon/>: null}
         </View>
         : null
         }

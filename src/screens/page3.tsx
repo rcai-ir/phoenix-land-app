@@ -1,23 +1,13 @@
-import Button from "@/components/button";
 import React from "react"
 import { StyleSheet, View , Text } from 'react-native';
 import { useDispatch } from "react-redux";
-import { 
-    isLogin, 
-} from '@/state-management/actions/global-state-actions';
 
 
-export default function HomePage () {
+export default function Page3 () {
     const dispatch = useDispatch();
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>home page</Text>
-            <Button
-            title="خروج"
-            backgroundColor={"red"}
-            color={"white"}
-            onPress={()=>dispatch(isLogin(false))}
-            />
+            <Text style={styles.text}> page3</Text>
         </View>
     )
 }

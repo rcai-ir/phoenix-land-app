@@ -21,12 +21,8 @@ import unseenIcon from "../../assets/SVGs/unSeen.svg";
 import viewIcon from "../../assets/SVGs/view.svg";
 
 
-
-
-
-
-function LoginScreen(props:any) {
-    const { userLogin, userGetById, navigation } = props;
+export default function LoginScreen(props:any) {
+    const { navigation } = props;
     const usernameRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
     const {themeMode, rememberMe, persistLoginScreen} = useSelector((state:any)=>state.globalState);
@@ -56,7 +52,8 @@ function LoginScreen(props:any) {
             }))
         }
         try {
-            const response = await userLogin(loginData);
+            const response = await userLogin(loginData)(dispatch) ;
+            console.log(response);
             if(response.data.result && response.status===200){
                 const userData: Authenticated = {
                     db: "healthup",
@@ -64,23 +61,24 @@ function LoginScreen(props:any) {
                     uid:response.data.result,
                 }
                 try {
-                    const userDataResponse = await userGetById(userData);
+                    const userDataResponse = await userGetById(userData)(dispatch);
                     if(userDataResponse && userDataResponse.status===200){
                         const uid=userDataResponse.data.result[0].id;
                         const name= userDataResponse.data.result[0].name;
                         const partner_id=userDataResponse.data.result[0].partner_id[0];
                         const password = passwordRef.current?.getValue();
                         const data:any ={uid, name, partner_id, password};
-                        await isLogin(true); 
-                        await setUserData(data);
-                        navigation.push("HomeScreen")
+                        await dispatch(isLogin(true)) ; 
+                        await dispatch(setUserData(data));
+                        navigation.push("ProfileScreen")
                     }
 
                 }catch(error:any){
                     Alert.alert(error.message)
                 }
+            }else {
+                Alert.alert("نام کاربری و یا رمز عبور اشتباه است")
             }
-            console.log(response.data.result);
         }catch(error:any){
             Alert.alert(error.message)
             console.log(error)
@@ -96,6 +94,7 @@ function LoginScreen(props:any) {
             onSubmit={()=>passwordRef.current?.onFocus()}
             LeftIcon={usernameIcon}
             bgColorLeftIcon={mode.backgroundLight}
+            textAlign="left"
             />
             <TextField
             ref={passwordRef}
@@ -106,6 +105,7 @@ function LoginScreen(props:any) {
             RightIcon={!showPassword ? unseenIcon : viewIcon}
             bgColorLeftIcon={mode.backgroundLight}
             rightIconOnSubmit={()=>setShowPassword(!showPassword)}
+            textAlign="left"
             />
             <Checkbox.Item
             label="من را به خاطر بسپار"
@@ -130,7 +130,6 @@ function LoginScreen(props:any) {
             onPress={handleSubmitForm}
             />
         </View>
-        
     )
 }
 
@@ -144,14 +143,3 @@ const styles = StyleSheet.create({
         padding:40,
     }
 })
-
-const mapDispatchToProps = (dispatch:any) =>{
-    return {
-        userLogin: (credentials:Authenticated) => dispatch (userLogin(credentials)),
-        userGetById: (credentials:Authenticated) => dispatch (userGetById(credentials)),
-        setUserData: (data: any) => dispatch(setUserData(data)),
-        isLogin: (data: boolean) => dispatch(isLogin(data)),
-    }
-}
-
-export default connect(null, mapDispatchToProps)(LoginScreen)
