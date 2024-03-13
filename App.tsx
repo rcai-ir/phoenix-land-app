@@ -40,7 +40,7 @@ export default function App() {
   ? <Splash setIsLoading={setIsloading}/> 
   : <Provider store={store}>
       <Navigations/>
-  </Provider>
+    </Provider>
 }
 
 

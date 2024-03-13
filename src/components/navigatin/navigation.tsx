@@ -1,32 +1,55 @@
-import React from "react";
+import React, {useRef} from "react";
 import { Pages } from "@/utils/pages";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "@/config/theme";
 import { useSelector } from "react-redux";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import BurgerMenu from "../../../assets/SVGs/burgerMenu.svg"
+import {View, StyleSheet, TouchableOpacity } from "react-native";
+import BurgerMenu from "../../../assets/SVGs/burgerMenu.svg";
+import BottomSheet, { BottomSheetRefProps } from '../navigatin/bottom-sheet';
+import BottomSheetContext from '../navigatin/bottom-sheet-context';
+import { ListOfBottomSheet } from "./list-of-bottom-sheet";
+import ToggleBottomSheetItem from "./toggle-account-details";
+
+
+
+
 
 const Stack = createNativeStackNavigator();
 
 const Navigations = () => {
     const {themeMode, isLogined} = useSelector((state:any)=>state.globalState);
     const mode = themeMode === "light" ? theme.light : theme.dark;
-
-    const handleChangeBottonSheet = async ()=> {
-        console.log("ok")
-        // const isActive = await ref?.current?.isActive();
-        // if (isActive) {
-        //     ref?.current?.scrollTo(0);
-        // } else {
-        //     ref?.current?.scrollTo(-350);}
-    };
+    const ref = useRef<BottomSheetRefProps>(null);
 
     const styles = StyleSheet.create({
-        button:{
+        button: {
+            height: 40,
+            borderRadius: 20,
+            aspectRatio:1,
+        },
+        line: {
+            width: "100%",
+            height:1,
+            backgroundColor:mode.backgroundLight,
+            alignSelf: "center",
+            marginVertical: 15,
+            borderRadius:3,
+        },
+        list: {
+            flexDirection:"row-reverse",
+            paddingHorizontal: 20,
+            alignItems:"center",
+        },    
+    });
 
-        }
-    })
+    const handleChangeBottonSheet = async ()=> {
+        const isActive = await ref?.current?.isActive();
+        if (isActive) {
+            ref?.current?.scrollTo(0);
+        } else {
+            ref?.current?.scrollTo(-350);}
+    };
 
     return (
         <NavigationContainer>
@@ -61,9 +84,9 @@ const Navigations = () => {
                                 headerTitle: page.persianName,
                                 headerTransparent: false,
                                 autoHideHomeIndicator: false,
-                                headerBackVisible: page.name !== "HomeScreen",
+                                headerBackVisible: page.name !== "ProfileScreen",
                                     headerLeft:
-                                        page.name === "HomeScreen" ? () => (
+                                        page.name === "ProfileScreen" ? () => (
                                         <TouchableOpacity style={styles.button} onPress={handleChangeBottonSheet}>
                                             <BurgerMenu />
                                         </TouchableOpacity>
@@ -72,7 +95,7 @@ const Navigations = () => {
                             }}
                             />
                         )
-                    }else {
+                    }else if(page.rule ==="restricted" && !isLogined) {
                         return (
                             <Stack.Screen
                             key={index} 
@@ -101,7 +124,28 @@ const Navigations = () => {
                         )
                     }
                 })}
-            </Stack.Navigator>      
+            </Stack.Navigator>
+            {/* <BottomSheet ref={ref}>
+                <View style={{flex:1, backgroundColor:mode.background}}>
+                <BottomSheetContext>
+                    {ListOfBottomSheet.map((item:any, index:number)=> {
+                        return(
+                            <View key={index}>
+                                <View style={styles.list}>
+                                    <ToggleBottomSheetItem 
+                                    title={item.persianName}
+                                    navigationLink={item.navigationLink}
+                                    action= {handleChangeBottonSheet}
+                                    />
+                                    <item.icon/>
+                                </View>
+                                <View style={[styles.line, {display: index + 1 === ListOfBottomSheet.length ? 'none': 'flex'}]}/>
+                            </View>
+                        )
+                    })}
+                </BottomSheetContext>
+                </View>
+            </BottomSheet>     */}
         </NavigationContainer>
     )
 }

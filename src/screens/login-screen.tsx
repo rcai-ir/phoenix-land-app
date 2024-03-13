@@ -53,7 +53,6 @@ export default function LoginScreen(props:any) {
         }
         try {
             const response = await userLogin(loginData)(dispatch) ;
-            console.log(response);
             if(response.data.result && response.status===200){
                 const userData: Authenticated = {
                     db: "healthup",
@@ -93,7 +92,8 @@ export default function LoginScreen(props:any) {
             placeholderTextColor={mode.grayColor}
             onSubmit={()=>passwordRef.current?.onFocus()}
             LeftIcon={usernameIcon}
-            bgColorLeftIcon={mode.backgroundLight}
+            borderRadius={20}
+            // bgColorLeftIcon={mode.backgroundLight}
             textAlign="left"
             />
             <TextField
@@ -103,7 +103,8 @@ export default function LoginScreen(props:any) {
             placeholderTextColor={mode.grayColor}
             LeftIcon={passwordIcon}
             RightIcon={!showPassword ? unseenIcon : viewIcon}
-            bgColorLeftIcon={mode.backgroundLight}
+            borderRadius={20}
+            // bgColorLeftIcon={mode.backgroundLight}
             rightIconOnSubmit={()=>setShowPassword(!showPassword)}
             textAlign="left"
             />

@@ -4,26 +4,29 @@ import  theme  from '../config/theme';
 import { useSelector } from "react-redux";
 
 export type InputHandle={
-getValue: ()=> string;
-onFocus: ()=> void;
-setValue?: (value: string) => void;
+    getValue: ()=> string;
+    onFocus: ()=> void;
+    setValue?: (value: string) => void;
 }
 
 type InputProps ={
-placeholder?: string;
-secureTextEntry?: boolean;
-textAlign?: string;
-RightIcon?:any;
-LeftIcon?:any;
-bgColorLeftIcon?:string,
-bgColorRightIcon?:string,
-onSubmit?: () =>void;
-rightIconOnSubmit?:()=>void;
-leftIconOnSubmit?:()=>void;
+    backgroundColor?:string;
+    placeholder?: string;
+    secureTextEntry?: boolean;
+    textAlign?: string;
+    RightIcon?:any;
+    LeftIcon?:any;
+    bgColorLeftIcon?:string,
+    bgColorRightIcon?:string,
+    borderRadius?:number;
+    onSubmit?: () =>void;
+    rightIconOnSubmit?:()=>void;
+    leftIconOnSubmit?:()=>void;
 } & TextInputProps;
 
 const TextField = forwardRef<InputHandle, InputProps>(
 ({
+    backgroundColor,
     placeholder, 
     secureTextEntry, 
     textAlign, 
@@ -31,6 +34,7 @@ const TextField = forwardRef<InputHandle, InputProps>(
     LeftIcon, 
     bgColorLeftIcon, 
     bgColorRightIcon,
+    borderRadius,
     onSubmit,
     rightIconOnSubmit,
     leftIconOnSubmit,
@@ -49,16 +53,16 @@ const TextField = forwardRef<InputHandle, InputProps>(
     alignItems:'center',
         height:40,
         width: "100%",
-        backgroundColor:mode.component,
+        backgroundColor: backgroundColor ? backgroundColor : mode.component,
         borderWidth:1,
         marginBottom:20,
-        borderRadius:15,
+        borderRadius: borderRadius? borderRadius : 15,
         gap:5,
     },
     textInput:{
     flex:1,
         paddingRight:10,
-        paddingLeft:10,
+        paddingLeft:2,
         color: mode.color,
         fontSize:14,
         textAlign:"left"
@@ -71,14 +75,14 @@ const TextField = forwardRef<InputHandle, InputProps>(
         
     },
     rightIcon:{
-    backgroundColor:bgColorRightIcon ? bgColorRightIcon : mode.component,
-    borderTopRightRadius:15,
-    borderBottomRightRadius:15, 
+    backgroundColor: bgColorRightIcon ? bgColorRightIcon : backgroundColor ? backgroundColor : mode.component,
+    borderTopRightRadius:borderRadius? borderRadius : 15,
+    borderBottomRightRadius: borderRadius? borderRadius : 15, 
     },
     leftIcon:{
-    backgroundColor: bgColorLeftIcon ? bgColorLeftIcon : mode.component,
-    borderTopLeftRadius:15,
-    borderBottomLeftRadius:15, 
+    backgroundColor: bgColorLeftIcon ? bgColorLeftIcon : backgroundColor ? backgroundColor : mode.component,
+    borderTopLeftRadius: borderRadius? borderRadius : 15,
+    borderBottomLeftRadius: borderRadius? borderRadius : 15, 
     }
 })
 

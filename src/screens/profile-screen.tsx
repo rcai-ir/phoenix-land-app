@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, Alert } from "react-native";
 import theme from "@/config/theme";
 import { useSelector } from "react-redux";
 import HomeIcon from "../../assets/SVGs/Home.svg";
@@ -9,13 +9,17 @@ import Link1Disable from "../../assets/SVGs/nutritionOutline.svg";
 import Link2 from "../../assets/SVGs/sport.svg";
 import Link2Disable from "../../assets/SVGs/sportOutline.svg";
 import Link3 from "../../assets/SVGs/analysisIcon.svg"
-import Link3Disable from "../../assets/SVGs/analysisIconOutline.svg"
+import Link3Disable from "../../assets/SVGs/analysisIconOutline.svg";
+import { useDispatch } from "react-redux";
+import { isLogin } from '@/state-management/actions/global-state-actions';
+
 
 
 export default function ProfileScreen(){
     const [selectedIcon, setSelectedIcon] = useState("");
     const {themeMode} = useSelector((state:any)=>state.globalState);
     const mode = themeMode === "light" ? theme.light : theme.dark;
+    const dispatch = useDispatch();
 
 
     const styles = StyleSheet.create({
@@ -69,7 +73,7 @@ export default function ProfileScreen(){
                     </Pressable>
 
                     <Pressable 
-                    onPress={()=>setSelectedIcon("Link3")} 
+                    onPress={()=>{setSelectedIcon("Link3");dispatch(isLogin(false))}} 
                     style={styles.iconBehave}
                     android_ripple={{borderless:true, radius:20}}>
                         {selectedIcon==="Link3"? <Link3/> : <Link3Disable/>}
