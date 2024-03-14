@@ -1,5 +1,6 @@
-# phoenix-land-app
-A Gamification UI 
+# Phoenix Land
+
+A Gamification UI
 
 # Prerequisites
 
@@ -18,16 +19,15 @@ A Gamification UI
 
 # Installation
 
-    Clone the repository:
-    git clone https://github.com/rcai-ir/healthup-android-app
-    Change into the project directory
-    npm install 
-    npm start or npx expo start
-    press a for run android 
+Clone the repository:
 
-# Development devDependencies
-    @babel/core - Babel compiler core.
-    @types/react - TypeScript type definitions for React.
-    @types/react-native - TypeScript type definitions for React Native.
-    @typescript - Typed JavaScript at any scale.
-    @types/redux-thunk - redux-thunk handle side effects in redux state managment
+    git clone https://github.com/rcai-ir/healthup-android-app
+
+Change into the project directory
+
+    npm install
+    npm start
+
+press a for run android
+
+NOTE: Do not use Yarn as dependenci manager.

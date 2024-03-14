@@ -1,13 +1,19 @@
 {
+  "name": "phoenix-land-app",
+  "displayName": "Phoenix Land",
   "expo": {
     "name": "phoenix-land-app",
     "slug": "phoenix-land-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": [
+      "web",
+      "android"
+    ],
     "splash": {
-      "image": "./assets/splash.json",
+      "image": "assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,16 +22,17 @@
       "assets/fonts/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.oxydoo.phoenixland"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.oxydoo.phoenixland"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "assets/favicon.png"
     }
   }
 }

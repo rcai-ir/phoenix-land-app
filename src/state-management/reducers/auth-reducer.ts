@@ -1,39 +1,37 @@
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-} from "../actions/auth-actions";
-
+    LOGIN_FAILURE
+} from '../actions/auth-actions';
 
 const initialState = {
     loading: false,
     data: [],
-    error: "",
+    error: ''
 };
 
-
-export const loginReducer = (state = initialState, action:any) => {
+export const loginReducer = (state = initialState, action: any): any => {
     switch (action.type) {
         case LOGIN_REQUEST:
-        return {
-            ...state,
-            loading: true,
-        };
+            return {
+                ...state,
+                loading: true
+            };
         case LOGIN_SUCCESS:
-        return {
-            ...state,
-            loading: false,
-            data: action.payload,
-            error: "",
-        };
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                error: ''
+            };
         case LOGIN_FAILURE:
-        return {
-            ...state,
-            loading: false,
-            data: [],
-            error: action.payload,
-        };
-    default:
-        return state;
+            return {
+                ...state,
+                loading: false,
+                data: [],
+                error: action.payload
+            };
+        default:
+            return state;
     }
 };
