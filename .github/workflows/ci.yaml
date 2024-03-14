@@ -19,7 +19,7 @@ jobs:
 
       - name: Install node modules
         run: |
-          node install
+          npm install
           
       - name: ESLint check
         run: |
