@@ -8,7 +8,7 @@
         "ios": "expo start --ios",
         "web": "expo start --web",
         "ts:check": "tsc",
-        "eslint": "npx eslint src --ext .js,.jsx,.ts,.tsx"
+        "eslint:test": "npx eslint src --ext .js,.jsx,.ts,.tsx"
     },
     "dependencies": {
         "@expo/metro-config": "~0.17.1",
