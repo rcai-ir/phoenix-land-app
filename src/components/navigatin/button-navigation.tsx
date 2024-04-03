@@ -11,7 +11,6 @@
 // import HomeOutline from "./assets/SVGs/HomeOutline.svg"
 // import HomePage from "@/screens/home-page";
 
-
 // // Tab Bottom
 // const Tab = createBottomTabNavigator();
 
@@ -33,14 +32,14 @@
 //           }
 //           return null
 //         },
-        
+
 //       })}
 //     >
 //       <Tab.Screen name="home" component={HomePage} options={{headerShown:false}} />
 //       <Tab.Screen name="Item1" component={HomePage} />
 //       <Tab.Screen name="Item2" component={HomePage} />
 //       <Tab.Screen name="Item3" component={HomePage} />
-      
+
 //     </Tab.Navigator>
 //   );
 // }

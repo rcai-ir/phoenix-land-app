@@ -1,33 +1,32 @@
-import {USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE} from '../actions/user-actions';
+import { USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE } from '../actions/user-actions';
 
 const initialState = {
-    loading: false,
-    data: [],
-    error: ''
-}
+  loading: false,
+  data: [],
+  error: '',
+};
 
 export const userDataReducer = (state = initialState, action:any) => {
-switch(action.type) {
+  switch (action.type) {
     case USER_DATA_REQUEST:
-    return {
+      return {
         ...state,
-        loading: true
-    }
+        loading: true,
+      };
     case USER_DATA_SUCCESS:
-    return {
+      return {
         loading: false,
         data: action.payload,
-        error: ''
-    }
+        error: '',
+      };
     case USER_DATA_FAILURE:
-    return {
+      return {
         ...state,
         loading: false,
         data: [],
-        error: action.payload
-    }
+        error: action.payload,
+      };
     default:
-    return state;
-}
-}
-
+      return state;
+  }
+};
