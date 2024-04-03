@@ -1,0 +1,11 @@
+{
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "prettier.singleAttributePerLine": true
+  }
