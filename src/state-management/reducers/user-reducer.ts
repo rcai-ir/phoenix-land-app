@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE } from '../actions/user-actions';
 
 const initialState = {
@@ -30,41 +29,4 @@ export const userDataReducer = (state = initialState, action:any) => {
     default:
       return state;
   }
-=======
-import {
-    USER_DATA_REQUEST,
-    USER_DATA_SUCCESS,
-    USER_DATA_FAILURE
-} from '../actions/user-actions';
-
-const initialState = {
-    loading: false,
-    data: [],
-    error: ''
-};
-
-export const userDataReducer = (state = initialState, action: any): any => {
-    switch (action.type) {
-        case USER_DATA_REQUEST:
-            return {
-                ...state,
-                loading: true
-            };
-        case USER_DATA_SUCCESS:
-            return {
-                loading: false,
-                data: action.payload,
-                error: ''
-            };
-        case USER_DATA_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                data: [],
-                error: action.payload
-            };
-        default:
-            return state;
-    }
->>>>>>> b250076a476487b39b736554ae7b95bcbf660f21
 };
