@@ -18,6 +18,12 @@
             "request": "launch",
             "platform": "android",
             "enableDebug": false
+        },
+        {
+            "name": "Attach to Hermes application - Experimental",
+            "cwd": "${workspaceFolder}",
+            "type": "reactnativedirect",
+            "request": "attach"
         }
     ]
 }

@@ -41,7 +41,8 @@ export default function LoginScreen(props:any) {
 
   const handleSubmitForm = async () => {
     const loginData : Authenticated = {
-      db: 'healthup',
+      //TODO: maso, 2024: This is the backend option keep it with backend URL
+      db: 'dpq15',
       login: usernameRef.current?.getValue(),
       password: passwordRef.current?.getValue(),
     };
@@ -55,7 +56,8 @@ export default function LoginScreen(props:any) {
       const response = await userLogin(loginData)(dispatch);
       if (response.data.result && response.status === 200) {
         const userData: Authenticated = {
-          db: 'healthup',
+          //TODO: maso, 2024: This is the backend option keep it with backend URL
+          db: 'dpq15',
           password: passwordRef.current?.getValue(),
           uid: response.data.result,
         };
