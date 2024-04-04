@@ -13,40 +13,40 @@ export interface Page {
 }
 
 export const Pages: Page[] = [
-  {
-    name: 'LoginScreen',
-    persianName: 'صفحه ورود',
-    component: LoginScreen,
-    rule: 'restricted',
-  },
-  {
-    name: 'HomeScreen',
-    persianName: 'صفحه نخست',
-    component: HomePage,
-    rule: 'private',
-  },
-  {
-    name: 'ProfileScreen',
-    persianName: 'پروفایل شخصی',
-    component: ProfileScreen,
-    rule: 'private',
-  },
-  {
-    name: 'Page1',
-    persianName: 'صفحه اول',
-    component: Page1,
-    rule: 'private',
-  },
-  {
-    name: 'Page2',
-    persianName: 'صحفه دوم',
-    component: Page2,
-    rule: 'private',
-  },
-  {
-    name: 'Page3',
-    persianName: 'صفحه سوم',
-    component: Page3,
-    rule: 'private',
-  },
+    {
+        name: 'LoginScreen',
+        persianName: 'صفحه ورود',
+        component: LoginScreen,
+        rule: 'restricted',
+    },
+    {
+        name: 'HomeScreen',
+        persianName: 'صفحه نخست',
+        component: HomePage,
+        rule: 'private',
+    },
+    {
+        name: 'ProfileScreen',
+        persianName: 'پروفایل شخصی',
+        component: ProfileScreen,
+        rule: 'private',
+    },
+    {
+        name: 'Page1',
+        persianName: 'صفحه اول',
+        component: Page1,
+        rule: 'private',
+    },
+    {
+        name: 'Page2',
+        persianName: 'صحفه دوم',
+        component: Page2,
+        rule: 'private',
+    },
+    {
+        name: 'Page3',
+        persianName: 'صفحه سوم',
+        component: Page3,
+        rule: 'private',
+    },
 ];

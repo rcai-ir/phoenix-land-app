@@ -12,26 +12,26 @@ type userType = {
 };
 
 export const setTheme = (theme:any) => ({
-  type: SET_THEME,
-  payload: theme,
+    type: SET_THEME,
+    payload: theme,
 });
 
 export const isLogin = (data: boolean) => ({
-  type: SET_ISLOGIN,
-  payload: data,
+    type: SET_ISLOGIN,
+    payload: data,
 });
 
 export const setRememberMe = (data:boolean) => ({
-  type: SET_REMEMBER_ME,
-  payload: data,
+    type: SET_REMEMBER_ME,
+    payload: data,
 });
 
 export const setPersistLoginScreenData = (data:any) => ({
-  type: SET_PERSIST_USERNAME_AND_PASSWORD,
-  payload: data,
+    type: SET_PERSIST_USERNAME_AND_PASSWORD,
+    payload: data,
 });
 
 export const setUserData = (data: userType) => ({
-  type: SET_USER_DATA,
-  payload: data,
+    type: SET_USER_DATA,
+    payload: data,
 });

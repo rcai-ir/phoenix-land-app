@@ -6,17 +6,17 @@ interface BottomSheetContextProps {
 }
 
 function BottomSheetContext(props:BottomSheetContextProps) {
-  return (
-    <ScrollView style={styles.container}>
-      {props.children}
-    </ScrollView>
-  );
+    return (
+        <ScrollView style={styles.container}>
+            {props.children}
+        </ScrollView>
+    );
 }
 export default BottomSheetContext;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 20,
-  },
+    container: {
+        flex: 1,
+        margin: 20,
+    },
 });

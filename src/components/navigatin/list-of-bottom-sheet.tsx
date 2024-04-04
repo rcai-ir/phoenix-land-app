@@ -11,17 +11,17 @@ export interface Pages {
 }
 
 export const ListOfBottomSheet: Pages[] = [
-  {
-    name: 'ContactUs',
-    persianName: 'صفحه نخست',
-    icon: ArrowLeft,
-    navigationLink: 'HomeScreen',
+    {
+        name: 'ContactUs',
+        persianName: 'صفحه نخست',
+        icon: ArrowLeft,
+        navigationLink: 'HomeScreen',
 
-  },
-  {
-    name: 'SettingScreen',
-    persianName: 'تنظیمات',
-    icon: ArrowLeft,
-    navigationLink: 'SettingScreen',
-  },
+    },
+    {
+        name: 'SettingScreen',
+        persianName: 'تنظیمات',
+        icon: ArrowLeft,
+        navigationLink: 'SettingScreen',
+    },
 ];

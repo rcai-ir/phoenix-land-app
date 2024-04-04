@@ -8,7 +8,7 @@
       "ios": "expo start --ios",
       "web": "expo start --web",
       "ts:check": "tsc",
-      "lint": "eslint .",
+      "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx",
       "lint:fix":"eslint --fix ."
     },
     "dependencies": {

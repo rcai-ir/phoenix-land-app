@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Pressable} from 'react-native';
+    View, StyleSheet, Pressable} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import theme from '@/config/theme';
 import HomeIcon from '../../assets/SVGs/Home.svg';
@@ -19,81 +19,81 @@ import Page3 from "@/screens/page3";
 
 
 export default function ProfileScreen() {
-  const [selectedIcon, setSelectedIcon] = useState('HomeIcon');
-  const [selectedPage, setSelectedPage] = useState("Page1")
-  const { themeMode } = useSelector((state:any) => state.globalState);
-  const mode = themeMode === 'light' ? theme.light : theme.dark;
-  const dispatch = useDispatch();
+    const [selectedIcon, setSelectedIcon] = useState('HomeIcon');
+    const [selectedPage, setSelectedPage] = useState("Page1")
+    const { themeMode } = useSelector((state:any) => state.globalState);
+    const mode = themeMode === 'light' ? theme.light : theme.dark;
+    const dispatch = useDispatch();
 
-  const styles = StyleSheet.create({
-    contaier: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    navContainer: {
-      position: 'absolute',
-      alignItems: 'center',
-      bottom: 25,
-    },
-    navBar: {
-      flexDirection: 'row',
-      backgroundColor: mode.component,
-      width: '100%',
-      justifyContent: 'space-evenly',
-      borderRadius: 50,
-    },
-    iconBehave: {
-      padding: 15,
-    },
-  });
+    const styles = StyleSheet.create({
+        contaier: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        navContainer: {
+            position: 'absolute',
+            alignItems: 'center',
+            bottom: 25,
+        },
+        navBar: {
+            flexDirection: 'row',
+            backgroundColor: mode.component,
+            width: '100%',
+            justifyContent: 'space-evenly',
+            borderRadius: 50,
+        },
+        iconBehave: {
+            padding: 15,
+        },
+    });
 
-  return (
-    <View style={styles.contaier}>
-      <View>
-        {
-        selectedPage === "Page1" 
-        ? <Page1/>
-        : selectedPage === "Page2"
-        ? <Page2/>
-        : <Page3/>
-      }
-      </View>
-      <View style={styles.navContainer}>
-        <View style={styles.navBar}>
-          <Pressable
-            onPress={() => {setSelectedIcon('HomeIcon'); setSelectedPage("Page1")}}
-            style={styles.iconBehave}
-            android_ripple={{ borderless: true, radius: 20 }}
-          >
-            {selectedIcon === 'HomeIcon' ? <HomeIcon /> : <HomeIconDisable />}
-          </Pressable>
+    return (
+        <View style={styles.contaier}>
+            <View>
+                {
+                    selectedPage === "Page1" 
+                        ? <Page1/>
+                        : selectedPage === "Page2"
+                            ? <Page2/>
+                            : <Page3/>
+                }
+            </View>
+            <View style={styles.navContainer}>
+                <View style={styles.navBar}>
+                    <Pressable
+                        onPress={() => {setSelectedIcon('HomeIcon'); setSelectedPage("Page1")}}
+                        style={styles.iconBehave}
+                        android_ripple={{ borderless: true, radius: 20 }}
+                    >
+                        {selectedIcon === 'HomeIcon' ? <HomeIcon /> : <HomeIconDisable />}
+                    </Pressable>
 
-          <Pressable
-            onPress={() => {setSelectedIcon('Link1');setSelectedPage("Page2")}}
-            style={styles.iconBehave}
-            android_ripple={{ borderless: true, radius: 20 }}
-          >
-            {selectedIcon === 'Link1' ? <Link1 /> : <Link1Disable />}
-          </Pressable>
+                    <Pressable
+                        onPress={() => {setSelectedIcon('Link1');setSelectedPage("Page2")}}
+                        style={styles.iconBehave}
+                        android_ripple={{ borderless: true, radius: 20 }}
+                    >
+                        {selectedIcon === 'Link1' ? <Link1 /> : <Link1Disable />}
+                    </Pressable>
 
-          <Pressable
-            onPress={()=> { setSelectedIcon('Link2'); setSelectedPage("Page3")}}
-            style={styles.iconBehave}
-            android_ripple={{ borderless: true, radius: 20 }}
-          >
-            {selectedIcon === 'Link2' ? <Link2 /> : <Link2Disable />}
-          </Pressable>
+                    <Pressable
+                        onPress={()=> { setSelectedIcon('Link2'); setSelectedPage("Page3")}}
+                        style={styles.iconBehave}
+                        android_ripple={{ borderless: true, radius: 20 }}
+                    >
+                        {selectedIcon === 'Link2' ? <Link2 /> : <Link2Disable />}
+                    </Pressable>
 
-          <Pressable
-            onPress={() => { setSelectedIcon('Link3'); dispatch(isLogin(false)); }}
-            style={styles.iconBehave}
-            android_ripple={{ borderless: true, radius: 20 }}
-          >
-            {selectedIcon === 'Link3' ? <Link3 /> : <Link3Disable />}
-          </Pressable>
+                    <Pressable
+                        onPress={() => { setSelectedIcon('Link3'); dispatch(isLogin(false)); }}
+                        style={styles.iconBehave}
+                        android_ripple={{ borderless: true, radius: 20 }}
+                    >
+                        {selectedIcon === 'Link3' ? <Link3 /> : <Link3Disable />}
+                    </Pressable>
+                </View>
+            </View>
         </View>
-      </View>
-    </View>
-  );
+    );
 }

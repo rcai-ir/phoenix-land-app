@@ -6,15 +6,15 @@ interface SplashProps {
 }
 
 export default function Splash(props:SplashProps) {
-  const { setIsLoading } = props;
-  return (
-    <LottieView
-      source={require('../assets/splash.json')}
-      style={{ width: '100%', height: '100%' }}
-      autoPlay
-      loop={false}
-      resizeMode="contain"
-      onAnimationFinish={() => setIsLoading && setIsLoading(false)}
-    />
-  );
+    const { setIsLoading } = props;
+    return (
+        <LottieView
+            source={require('../assets/splash.json')}
+            style={{ width: '100%', height: '100%' }}
+            autoPlay
+            loop={false}
+            resizeMode="contain"
+            onAnimationFinish={() => setIsLoading && setIsLoading(false)}
+        />
+    );
 }
