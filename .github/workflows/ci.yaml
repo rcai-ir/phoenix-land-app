@@ -23,4 +23,4 @@ jobs:
           
       - name: ESLint check
         run: |
-          npm run eslint:test
+          npm run lint
