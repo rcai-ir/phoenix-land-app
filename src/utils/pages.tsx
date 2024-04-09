@@ -1,22 +1,25 @@
+import React from 'react';
 import HomePage from '@/screens/home-page';
-import LoginScreen from '@/screens/login-screen';
+import LoginScreen, { loginScreenProps } from '@/screens/login-screen';
 import ProfileScreen from '@/screens/profile-screen';
 import Page1 from '@/screens/page1';
 import Page2 from '@/screens/page2';
 import Page3 from '@/screens/page3';
 
-export interface Page {
-  name:string;
-  persianName: string;
-  component: React.ComponentType<any>;
-  rule?: string
+export interface Page<loginScreenProps> {
+    name:string;
+    persianName: string;
+    component: React.ComponentType<loginScreenProps>;
+    rule?: string
 }
+type PageComponentProps = loginScreenProps ;
 
-export const Pages: Page[] = [
+
+export const Pages: Page<PageComponentProps>[] = [
     {
         name: 'LoginScreen',
         persianName: 'صفحه ورود',
-        component: LoginScreen,
+        component: LoginScreen ,
         rule: 'restricted',
     },
     {

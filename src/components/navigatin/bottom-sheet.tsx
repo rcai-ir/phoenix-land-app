@@ -19,8 +19,15 @@ export type BottomSheetRefProps = {
   isActive: () => boolean;
 };
 
+type RootState = {
+  globalState: {
+    themeMode: string;
+  };
+};
+
+
 const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(({ children }, ref) => {
-    const { themeMode } = useSelector((state:any) => state.globalState);
+    const { themeMode } = useSelector((state:RootState) => state.globalState);
     const mode = themeMode === 'light' ? theme.light : theme.dark;
 
     const styles = StyleSheet.create({

@@ -7,19 +7,27 @@ import theme from '@/config/theme';
 import { Pages } from '@/utils/pages';
 import BurgerMenu from '../../../assets/SVGs/burgerMenu.svg';
 import  { BottomSheetRefProps } from './bottom-sheet';
+// import BottomSheet from '@gorhom/bottom-sheet';
 
 const Stack = createNativeStackNavigator();
+type RootState = {
+globalState: {
+    themeMode: string;
+    isLogined: boolean;
+};
+};
 
 function Navigations() {
-    const { themeMode, isLogined } = useSelector((state:any) => state.globalState);
+    const { themeMode, isLogined } = useSelector((state:RootState) => state.globalState);
     const mode = themeMode === 'light' ? theme.light : theme.dark;
     const ref = useRef<BottomSheetRefProps>(null);
 
     const styles = StyleSheet.create({
         button: {
-            height: 40,
+            height: 50,
             borderRadius: 20,
             aspectRatio: 1,
+            justifyContent:"center",
         },
         line: {
             width: '100%',
@@ -44,6 +52,9 @@ function Navigations() {
             ref?.current?.scrollTo(-350);
         }
     };
+
+    // const snapPoints = useMemo(()=>['25%', '50%', '100%'],[]);
+    // const bottomSheetRef = useRef<BottomSheet>(null);
 
     return (
         <NavigationContainer>
@@ -119,6 +130,13 @@ function Navigations() {
                     }
                 })}
             </Stack.Navigator>
+            {/* <BottomSheet 
+                ref={bottomSheetRef}
+                snapPoints={snapPoints}
+                index={1} 
+            >
+                <Text>hi</Text>
+            </BottomSheet> */}
             {/* <BottomSheet ref={ref}>
                 <View style={{flex:1, backgroundColor:mode.background}}>
                 <BottomSheetContext>

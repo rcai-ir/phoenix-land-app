@@ -4,10 +4,26 @@ import {
     SET_REMEMBER_ME,
     SET_PERSIST_USERNAME_AND_PASSWORD,
     SET_USER_DATA,
+    userType, 
+    GlobalStateActionTypes
 } from '../actions/global-state-actions';
 
-const initialState = {
-    userData: [],
+
+export interface GlobalState {
+    userData: userType; 
+    isLogined: boolean;
+    themeMode: string; 
+    rememberMe: boolean;
+    persistLoginScreen: { username: string | null; password: string | null }[];
+}
+
+const initialState: GlobalState = {
+    userData: {
+        uid: null,
+        name: null,
+        partner_id: null,
+        password: null,
+    },
     isLogined: false,
     themeMode: 'light',
     rememberMe: false,
@@ -19,7 +35,7 @@ const initialState = {
     ],
 };
 
-export const globalStateReducer = (state = initialState, action:any) => {
+export const globalStateReducer = (state: GlobalState = initialState, action:GlobalStateActionTypes) => {
     switch (action.type) {
         case SET_USER_DATA:
             return { ...state, userData: action.payload };

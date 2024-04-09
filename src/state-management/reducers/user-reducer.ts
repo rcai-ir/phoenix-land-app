@@ -1,4 +1,4 @@
-import { USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE } from '../actions/user-actions';
+import { USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE, GlobalStateActionTypes } from '../actions/user-actions';
 
 const initialState = {
     loading: false,
@@ -6,7 +6,7 @@ const initialState = {
     error: '',
 };
 
-export const userDataReducer = (state = initialState, action:any) => {
+export const userDataReducer = (state = initialState, action:GlobalStateActionTypes) => {
     switch (action.type) {
         case USER_DATA_REQUEST:
             return {

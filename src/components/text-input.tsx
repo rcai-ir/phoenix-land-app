@@ -9,25 +9,31 @@ import theme from '../config/theme';
 import {SvgProps} from "react-native-svg";
 
 export type InputHandle = {
-  getValue: ()=> string;
-  onFocus: ()=> void;
-  setValue?: (value: string) => void;
+    getValue: ()=> string;
+    onFocus: ()=> void;
+    setValue?: (value: string) => void;
 };
 
 type InputProps = {
-  backgroundColor?:string;
-  placeholder?: string;
-  secureTextEntry?: boolean;
-  textAlign?: string;
-  RightIcon?:React.ComponentType<SvgProps>;
-  LeftIcon?:React.ComponentType<SvgProps>;
-  bgColorLeftIcon?:string,
-  bgColorRightIcon?:string,
-  borderRadius?:number;
-  onSubmit?: () =>void;
-  rightIconOnSubmit?:()=>void;
-  leftIconOnSubmit?:()=>void;
+    backgroundColor?:string;
+    placeholder?: string;
+    secureTextEntry?: boolean;
+    textAlign?: string;
+    RightIcon?:React.ComponentType<SvgProps>;
+    LeftIcon?:React.ComponentType<SvgProps>;
+    bgColorLeftIcon?:string,
+    bgColorRightIcon?:string,
+    borderRadius?:number;
+    onSubmit?: () =>void;
+    rightIconOnSubmit?:()=>void;
+    leftIconOnSubmit?:()=>void;
 } & TextInputProps;
+
+type RootState = {
+    globalState: {
+        themeMode: string;
+    };
+};
 
 const TextField = forwardRef<InputHandle, InputProps>(
     ({
@@ -47,7 +53,7 @@ const TextField = forwardRef<InputHandle, InputProps>(
     }, ref) => {
         const [value, setValue] = useState('');
         const textInputRef = useRef<TextInput>(null);
-        const { themeMode } = useSelector((state:any) => state.globalState);
+        const { themeMode } = useSelector((state:RootState) => state.globalState);
         const mode = themeMode === 'light' ? theme.light : theme.dark;
 
         const styles = StyleSheet.create({
@@ -106,22 +112,14 @@ const TextField = forwardRef<InputHandle, InputProps>(
                         ? rightIconOnSubmit
                             ? (
                                 <TouchableOpacity onPress={rightIconOnSubmit}>
-                                    {
-                                        value.length > 0
-                                            ? (
-                                                <View style={[styles.Icons, styles.rightIcon]}>
-                                                    <RightIcon />
-                                                </View>
-                                            )
-                                            : null
-                                    }
+                                    <View style={[styles.Icons, styles.rightIcon]}>
+                                        <RightIcon />
+                                    </View>
                                 </TouchableOpacity>
                             )
                             : (
-                                <View
-                                    style={[styles.Icons, styles.rightIcon]}
-                                >
-                                    {value.length > 0 ? <RightIcon /> : null}
+                                <View style={[styles.Icons, styles.rightIcon]}>
+                                    <RightIcon /> 
                                 </View>
                             )
                         : null

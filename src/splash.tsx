@@ -2,11 +2,11 @@ import React from 'react';
 import LottieView from 'lottie-react-native';
 
 interface SplashProps {
-  setIsLoading?: any;
+    setIsLoading?:(isLoading:boolean)=>void;
 }
 
-export default function Splash(props:SplashProps) {
-    const { setIsLoading } = props;
+
+const Splash: React.FC<SplashProps> = ({setIsLoading})=> {
     return (
         <LottieView
             source={require('../assets/splash.json')}
@@ -18,3 +18,5 @@ export default function Splash(props:SplashProps) {
         />
     );
 }
+
+export default Splash

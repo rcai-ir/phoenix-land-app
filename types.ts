@@ -1,3 +1,4 @@
+
 export type Authenticated = {
   db: string;
   login?: string;
@@ -7,3 +8,13 @@ export type Authenticated = {
   fields?:string[],
   model?:string,
 };
+
+export type RootStackParamList = {
+  LoginScreen: undefined;
+  HomeScreen: undefined;
+  ProfileScreen: { userId: string };
+  Page1: undefined;
+  Page2: undefined;
+  Page3: undefined;
+};
+

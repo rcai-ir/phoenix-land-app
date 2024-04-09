@@ -2,6 +2,7 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+    GlobalStateActionTypes
 } from '../actions/auth-actions';
 
 const initialState = {
@@ -10,7 +11,9 @@ const initialState = {
     error: '',
 };
 
-export const loginReducer = (state = initialState, action:any) => {
+
+
+export const loginReducer = (state = initialState, action:GlobalStateActionTypes) => {
     switch (action.type) {
         case LOGIN_REQUEST:
             return {

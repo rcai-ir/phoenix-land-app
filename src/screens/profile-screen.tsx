@@ -16,12 +16,16 @@ import Page1 from "@/screens/page1";
 import Page2 from "@/screens/page2";
 import Page3 from "@/screens/page3";
 
-
+export type RootState = {
+    globalState: {
+        themeMode: string;
+    };
+};
 
 export default function ProfileScreen() {
     const [selectedIcon, setSelectedIcon] = useState('HomeIcon');
     const [selectedPage, setSelectedPage] = useState("Page1")
-    const { themeMode } = useSelector((state:any) => state.globalState);
+    const { themeMode } = useSelector((state:RootState) => state.globalState);
     const mode = themeMode === 'light' ? theme.light : theme.dark;
     const dispatch = useDispatch();
 
@@ -30,6 +34,7 @@ export default function ProfileScreen() {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
+            margin:2
         },
         navContainer: {
             position: 'absolute',
@@ -50,7 +55,7 @@ export default function ProfileScreen() {
 
     return (
         <View style={styles.contaier}>
-            <View>
+            <View style={{ width:"100%", height:"100%"}}>
                 {
                     selectedPage === "Page1" 
                         ? <Page1/>
